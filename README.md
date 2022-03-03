@@ -2,4 +2,4 @@
 
 ## DashTrade
 
-### DashTrade 1.0.0 prendra en charge Binance pour les ordres Futures 
+### DashTrade 1.0.0 prendra entièrement en charge Binance pour les ordres Futures 
