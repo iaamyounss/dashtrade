@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/9a2fce93-d60e-4e15-942d-62ef060cac55/deploy-status)](https://app.netlify.com/sites/dashtrade/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6fe97ca3-0e68-4403-a842-1de9e943346f/deploy-status)](https://app.netlify.com/sites/officialdashtrade/deploys)
 
 ## DashTrade
 
