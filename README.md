@@ -2,8 +2,4 @@
 
 ## DashTrade
 
-### Plateforme de trading de cryptomonnaies
-
-#### Site mis en ligne sur Netlify.
-
-https://dashtrade.netlify.app/
+### DashTrade 1.0.0 prendra en charge Binance pour les ordres Futures 
