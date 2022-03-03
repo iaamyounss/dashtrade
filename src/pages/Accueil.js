@@ -1,6 +1,6 @@
 import React from "react";
 import OrdersPanel from "components/OrdersPanel";
-import NavBar from "components/NavBar";
+//import NavBar from "components/NavBar";
 import TypeOrdersMenu from "components/OrdersSideBar/TypeOrdersMenu";
 import CssBaseline from "@mui/material/CssBaseline";
 import SignalTable from "components/grid/SignalTable";
@@ -10,7 +10,7 @@ const Accueil = () => {
   console.log(selectedToken);
   return (
     <div className="container">
-      {/* <NavBar className='nav' /> */}
+       {/* <NavBar className='nav' /> */}
       <CssBaseline />
       <div className="central-container">
         <SignalTable
