@@ -11,7 +11,7 @@ import './TypeOrders.css'
 
 export default function TypeOrdersFunc({
   CurrentCurrencyFromAPI = 'BTCUSDT',
-  CurrentPriceFromAPI = '42510',
+  CurrentPriceFromAPI = '42511',
   QuantityToBuy = '0.87552',
 }) {
   return (
