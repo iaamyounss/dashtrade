@@ -8,7 +8,8 @@ import 'pages/DashTrade.css'
 
 const NavBar = () => {
   const { logout } = useAuth()
-  const [error, setError] = useState('')
+  // error first state deleted for error : never used
+  const [ setError] = useState('')
 
   async function logOut() {
     try {
