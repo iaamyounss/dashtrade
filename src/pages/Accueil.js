@@ -8,6 +8,7 @@ import SignalTable from "components/grid/SignalTable";
 const Accueil = () => {
   const [selectedToken, setSelectedToken] = React.useState("BTC/USDT");
   console.log(selectedToken);
+  
   return (
     <div className="container">
        {/* <NavBar className='nav' /> */}
@@ -18,7 +19,10 @@ const Accueil = () => {
           className="central-container-left"
         />
 
-        <TypeOrdersMenu className="central-container-right" />
+        <TypeOrdersMenu 
+          className="central-container-right" 
+          selectedToken={selectedToken}
+        />
       </div>
       <OrdersPanel />
     </div>
@@ -26,3 +30,4 @@ const Accueil = () => {
 };
 
 export default Accueil;
+
