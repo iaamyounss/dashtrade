@@ -11,15 +11,15 @@ return(
         <Typography variant="h5" component="h3">Wallet</Typography>
 
         <Typography variant="div" className="wallet-balance">
-            <Typography variant="label">Margin balance:</Typography> 
+            <Typography variant="label">All this stuff:</Typography> 
             <Typography variant="span">0</Typography>
         </Typography>
         <Typography variant="div" className="wallet-balance">
-            <Typography variant="label">Margin Ratio:</Typography> 
+            <Typography variant="label">Is coming:</Typography> 
             <Typography variant="span">0</Typography>
         </Typography>
         <Typography variant="div" className="wallet-balance">
-            <Typography variant="label">Fonds disponibles:</Typography> 
+            <Typography variant="label">Very soon:</Typography> 
             <Typography variant="span">0</Typography>
         </Typography>
         <br />

@@ -6,19 +6,9 @@ import Wallet from './Wallet'
 import Divider from '@mui/material/Divider'
 import './TypeOrders.css'
 
-// TypeOrdersMenu est un composent de Type Drawer qui contient toute la logique de la sideBar
-// Responsive, switch from Limit to Market
-// Le props titleMenu est le composant "ordres" qui ouvre/ferme la sideBar via onClick
-// Toute la logique des ordres est implémenter dans TypeOrdersFunc
 
-export default function TypeOrdersMenu(props) {
+export default function TypeOrdersMenu({selectedToken}) {
   const [showLimit, setShowLimit] = useState(true)
-
-  /*
-    When limit component is show, the market component is hidden
-     create buttons and add onclick f
-    unction which is rendering the component choiced by the btn
-    */
 
   const handleLimitClick = () => {
     setShowLimit(!showLimit)
@@ -37,7 +27,10 @@ export default function TypeOrdersMenu(props) {
         <Button onClick={handleMarketClick}>Market</Button>
       </div>
       <br />
-      {showLimit ? <Limit /> : <Market />}
+      {showLimit
+        ? <Limit CurrentCurrencyAPI={selectedToken}/> 
+        : <Market CurrentCurrencyAPI={selectedToken}/>
+      }
     </div>
   )
 }

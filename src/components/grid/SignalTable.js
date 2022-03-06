@@ -33,7 +33,7 @@ const rows = signalService.getAllSignals();
 
 export default function SignalTable({ onSelectedToken }) {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const classes = useStyles();
 
@@ -110,7 +110,7 @@ export default function SignalTable({ onSelectedToken }) {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[25, 50, 100]}
+        rowsPerPageOptions={[10, 25, 50, 100]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
