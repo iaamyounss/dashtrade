@@ -1,0 +1,101 @@
+:root {
+  --primary-color: #999;
+  --secondary-color: #1c1f21;
+}
+
+body,
+html {
+  box-sizing: border-box;
+  font-size: 18px;
+  color: var(--primary-color);
+  background-color: #303437;
+  font-weight: bold;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  font-family: 'Roboto', sans-serif;
+  font-size: inherit;
+  font-weight: inherit;
+  user-select: none;
+  color: inherit;
+}
+
+/* Style the tab */
+.tabs {
+  background-color: rgb(21, 22, 21);
+  border-top: 1px solid #444;
+}
+
+.MuiTable-root {
+  background-color: rgb(21, 22, 21);
+}
+
+.tab {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hide-other-symbols {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+/* Style the buttons inside the tab */
+.tablinks {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+/* Change background color of buttons on hover */
+.tablinks:hover {
+  color: yellow;
+}
+
+/* Create an active/current tablink class */
+.tablinks.active {
+  color: yellow;
+}
+
+/* Style the tab content */
+.tabcontent {
+  padding-bottom: 50px;
+}
+
+.dateSelect {
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+.MuiOutlinedInput-input {
+  padding-right: 0;
+  padding-left: 0;
+  margin-top: -2px;
+}
+
+.periodSelect {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 10px;
+}
+
+.searchButton {
+  font-size: 15px;
+  padding-bottom: 3px;
+  margin-left: 60px;
+}
