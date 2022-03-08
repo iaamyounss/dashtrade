@@ -1,49 +1,63 @@
-import { useState } from 'react'
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import { useAuth } from 'context/AuthContext'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import 'pages/DashTrade.css'
+import { useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import { useAuth } from "context/AuthContext";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { Link } from "react-location";
+import "pages/DashTrade.css";
 
 const NavBar = () => {
-  const { logout } = useAuth()
-  // error first state deleted for error : never used
-  const [ setError] = useState('')
+
+  const { logout } = useAuth();
+  const [error, setError] = useState("");
+  const margin10 = { margin: 10 };
 
   async function logOut() {
     try {
-      setError('')
-      await logout()
+      setError("");
+      await logout();
     } catch {
-      setError('La déconnexion a échoué')
+      setError("La déconnexion a échoué");
     }
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static'>
-        <Toolbar>
-          {/* <img
+    <AppBar position="static">
+      <Toolbar className="nav">
+        {/* <img
             className='nav__logo'
             src='/images/DashTrade-logo.png'
             alt='Logo DashTrade'
             style={margin}
           /> */}
-          <Typography variant='h5' component='div' sx={{ flexGrow: 1 }}>
+        <div className="nav-left">
+          <Typography variant="h5" component="div" style={margin10}>
             DashTrade
           </Typography>
+          <Link to="/">
+            <Typography variant="h6" component="div" style={margin10}>
+              Dashboard
+            </Typography>
+          </Link>
+          <Link to="/admin">
+            <Typography variant="h6" component="div" style={margin10}>
+              Admin
+            </Typography>
+          </Link>
+        </div>
+        <div className="nav-right">
           <img
-            style={{ cursor: 'pointer' }}
-            className='nav__avatar'
-            src='/images/logout_icon_151219.png'
-            alt='Déconnexion'
+            style={{ cursor: "pointer" }}
+            className="nav__avatar"
+            src="/images/logout_icon_151219.png"
+            alt="Déconnexion"
             onClick={logOut}
           />
-        </Toolbar>
-      </AppBar>
-    </Box>
-  )
-}
+        </div>
+      </Toolbar>
+    </AppBar>
+  );
+};
 
-export default NavBar
+export default NavBar;
