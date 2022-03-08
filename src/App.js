@@ -1,9 +1,9 @@
-import { useAuth } from 'context/AuthContext'
+import { useAuth } from 'context/utils/AuthContext'
 import { lazy, Suspense } from 'react'
 import { AppProviders } from 'context'
-import LoadingFullScreen from 'components/LoadingFullScreen'
-const AuthApp = lazy(() => import(/* webpackPrefetch: true */ 'AuthApp'))
-const UnauthApp = lazy(() => import('UnauthApp'))
+import LoadingFullScreen from 'components/utils/LoadingFullScreen'
+const AuthApp = lazy(() => import(/* webpackPrefetch: true */ 'components/utils/AppAuth'))
+const UnauthApp = lazy(() => import('components/utils/AppUnAuth'))
 
 const AppConsumer = () => {
   const { authUser } = useAuth()
