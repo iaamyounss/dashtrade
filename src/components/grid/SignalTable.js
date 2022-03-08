@@ -12,12 +12,15 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { blueGrey } from "@mui/material/colors";
 
 const useStyles = makeStyles((theme) => ({
   tableHeaderCell: {
     fontWeight: "bold",
     backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.getContrastText(theme.palette.primary.dark),
+    //color: theme.palette.getContrastText(theme.palette.primary.dark),
+    color: blueGrey[200],
+    fontFamily: "Roboto",
   },
   up: {
     color: "#8DFF33",
