@@ -1,18 +1,21 @@
 import React from 'react';
-import TypeOrdersFunc from './TypeOrdersFunc'
+import TypeOrders from './TypeOrders'
 import './TypeOrders.css'
 
 
 //Market component return un type d'ordre == market
 // prend les props suivantes : 
-// CurrentCurrencyFromAPI : get the current currency from API 
-// CurrentPriceFromAPI    : get the current price in realtime from websocket 
+// CurrentCurrencyAPI : get the current currency from API 
+// CurrentPriceWS    : get the current price in realtime from websocket 
 // QuantityToBuy          : post the qty you want to buy/sell 
 
-export default function Market() {
+export default function Market({CurrentCurrencyAPI}) {
+    console.log('market')
     return(
         <>
-            <TypeOrdersFunc />
+            <TypeOrders 
+                CurrentCurrencyAPI={CurrentCurrencyAPI}
+            />
         </>
     )
 }

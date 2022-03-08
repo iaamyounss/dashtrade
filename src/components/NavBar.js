@@ -8,9 +8,11 @@ import { Link } from "react-location";
 import "pages/DashTrade.css";
 
 const NavBar = () => {
+
   const { logout } = useAuth();
   const [error, setError] = useState("");
   const margin10 = { margin: 10 };
+
   async function logOut() {
     try {
       setError("");
