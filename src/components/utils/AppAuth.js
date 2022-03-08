@@ -7,8 +7,8 @@ import LoadingFullScreen from "components/utils/LoadingFullScreen";
 
 function AuthApp() {
   const { logout } = useAuth();
-  const Accueil = lazy(() => import("View/Accueil"));
-  const Admin = lazy(() => import("View/Admin"));
+  const Accueil = lazy(() => import("Routes/Accueil"));
+  const Admin = lazy(() => import("Routes/Admin"));
 
   const routes = [
     {

@@ -2,15 +2,15 @@ import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { useAuth } from "context/utils/AuthContext";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-location";
-import "View/styles.css";
+import "Routes/styles.css";
 
 const Header = () => {
 
   const { logout } = useAuth();
-  const [error, setError] = useState("");
+  // remove the dfault state cause of warn
+  const [ setError] = useState("");
   const margin10 = { margin: 10 };
 
   async function logOut() {
