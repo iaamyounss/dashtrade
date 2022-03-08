@@ -5,6 +5,7 @@ import TypeOrdersMenu from "components/OrdersNav";
 import CssBaseline from "@mui/material/CssBaseline";
 import SignalTable from "components/GridSignals";
 import StatsPanel from "components/GlobalStats";
+import Header from '../components/Header'
 
 const Accueil = () => {
   const [selectedToken, setSelectedToken] = React.useState("BTC/USDT");

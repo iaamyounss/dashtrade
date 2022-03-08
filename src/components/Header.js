@@ -60,4 +60,4 @@ const Header = () => {
   );
 };
 
-export default NavBar;
+export default Header;
