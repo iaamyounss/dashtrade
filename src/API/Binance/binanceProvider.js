@@ -1,4 +1,4 @@
-import crypto from "crypto-js";
+import CryptoJS from "crypto-js";
 import axios from "axios";
 import {
   APIKEY,
@@ -21,16 +21,16 @@ async function clientApiSignedBinance(
   apiKeys,
   method
 ) {
-  const signature = crypto
+  const signature = CryptoJS
     .HmacSHA256(dataQueryString, apiKeys.APISECRET)
-    .toString(crypto.enc.Hex);
-
+    .toString(CryptoJS.enc.Hex);
+  const proxy = 'https://calm-caverns-53376.herokuapp.com/'
   const options = {
-    url: url + endPoint + "?" + dataQueryString + "&signature=" + signature,
+    url: proxy + url + endPoint + "?" + dataQueryString + "&signature=" + signature,
     method: method,
     headers: {
       "X-MBX-APIKEY": apiKeys.APIKEY,
-    },
+  },
   };
 
   return axios(options)

@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import SignalTable from "components/GridSignals";
 import StatsPanel from "components/GlobalStats";
 import Header from '../components/Header'
+import OrderSend from '../components/OrdersSend'
 
 const Accueil = () => {
   const [selectedToken, setSelectedToken] = React.useState("BTC/USDT");
@@ -24,6 +25,7 @@ const Accueil = () => {
         <TypeOrdersMenu className="central-container-right" />
       </div>
       <OrdersPanel />
+      <OrderSend />
     </div>
   );
 };
