@@ -22,7 +22,10 @@ const Accueil = () => {
           <StatsPanel />
           <SignalTable onSelectedToken={setSelectedToken} />
         </div>
-        <TypeOrdersMenu className="central-container-right" />
+        <TypeOrdersMenu 
+          className="central-container-right" 
+          selectedToken={selectedToken}
+        />
       </div>
       <OrdersPanel />
       <OrderSend />

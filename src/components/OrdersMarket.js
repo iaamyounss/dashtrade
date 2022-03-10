@@ -1,5 +1,5 @@
 import React from 'react';
-import TypeOrders from './Orders'
+import Orders from './Orders'
 import './Orders.css'
 
 
@@ -13,7 +13,7 @@ export default function Market({CurrentCurrencyAPI}) {
     console.log('market')
     return(
         <>
-            <TypeOrders 
+            <Orders 
                 CurrentCurrencyAPI={CurrentCurrencyAPI}
             />
         </>

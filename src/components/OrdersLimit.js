@@ -1,5 +1,5 @@
 import React from 'react';
-import TypeOrders from './Orders'
+import Orders from './Orders'
 import './Orders.css'
 
 //Limit component return un type d'ordre == limit
@@ -13,7 +13,7 @@ export default function Limit({CurrentCurrencyAPI}) {
     console.log('limit')
     return(
         <>
-            <TypeOrders 
+            <Orders 
                 CurrentCurrencyAPI={CurrentCurrencyAPI}
             />
         </>
