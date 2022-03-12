@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider'
 import './Orders.css'
 
 
-export default function TypeOrdersMenu({selectedToken}) {
+export default function OrdersNav({selectedToken}) {
   const [showLimit, setShowLimit] = useState(true)
 
   const handleLimitClick = () => {
@@ -23,13 +23,29 @@ export default function TypeOrdersMenu({selectedToken}) {
       <Divider />
       <br />
       <div>
-        <Button onClick={handleLimitClick}>Limit</Button>
-        <Button onClick={handleMarketClick}>Market</Button>
+        <Button 
+          onClick={handleLimitClick}
+          className={showLimit ? 'isActive': null}
+          >
+          Limit
+        </Button>
+        <Button 
+          onClick={handleMarketClick}
+          className={showLimit ? null : 'isActive'}
+          >
+          Market
+        </Button>
       </div>
       <br />
       {showLimit
-        ? <Limit CurrentCurrencyAPI={selectedToken}/> 
-        : <Market CurrentCurrencyAPI={selectedToken}/>
+        ? <Limit 
+            currentCurrencyAPI={selectedToken}
+            
+          /> 
+        : <Market 
+            currentCurrencyAPI={selectedToken}
+            
+          />
       }
     </div>
   )

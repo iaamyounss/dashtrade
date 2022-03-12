@@ -1,48 +1,59 @@
-import React from 'react'
+import * as React from 'react'
 import Typography from '@mui/material/Typography'
+import * as binance from '../API/Binance/binanceProvider'
 import './Orders.css'
 
 // Orders is a component who take the current information from the API for the client and push the orders the client want to the API
-// Orders take as props :
-// CurrentCurrencyAPI : get the current currency from API
-// CurrentPriceWS     : get the current price in realtime from websocket
-// QuantityToBuy      : post the qty you want to buy/sell
-//
+// props : 
+// currentCurrencyAPI  : get the current currency from API
+// type : Is limit or market ? 
+// timeInForce : GTC
+// quantityToBuy    : post the qty you want to buy/sell
+// currentPriceWS : get the current price in realtime from websocket
 
 export default function Orders({
-  CurrentCurrencyAPI = 'BTCUSDT',
-  CurrentPriceWS = '42511',
-  QuantityToBuy = '0.87552',
+  currentCurrencyAPI,
+  type, 
+  timeInForce="GTC",
+  quantityToBuy=0.03,
+  currentPriceWS=39180, 
 }) {
+
   return (
-    <form>
+    <div>
       <Typography
         component='div'
         style={{ display: 'flex', justifyContent: 'center' }}
       >
         <Typography component='span' style={{ textAlign: 'center' }}>
-          {CurrentCurrencyAPI}
+          {currentCurrencyAPI}
         </Typography>
       </Typography>
       {/* The CurrentPriceApi component take the currency on props and it value from API */}
       <CurrentPriceAPI
-        CurrentPriceWS={CurrentPriceWS}
-        CurrentCurrencyAPI={CurrentCurrencyAPI}
+        currentPriceWS={currentPriceWS}
+        currentCurrencyAPI={currentCurrencyAPI}
       />
       <br />
       {/* Quantity take quantityToBuy= as props to push to API the qty to buy/sell */}
       <Quantity
-        QuantityToBuy={QuantityToBuy}
-        CurrentCurrencyAPI={CurrentCurrencyAPI}
+        quantityToBuy={quantityToBuy}
+        currentCurrencyAPI={currentCurrencyAPI}
       />
       <br />
-      {/* ActionButtons push buySubmit & sellSubmit props to API */}
-      <ActionButtons />
-    </form>
+      {/* ActionButtons Submit API */}
+      <ActionButtons 
+          currentCurrencyAPI={currentCurrencyAPI}
+          type={type}
+          timeInForce={timeInForce}
+          quantityToBuy={quantityToBuy}
+          currentPriceWS={currentPriceWS}
+      />
+    </div>
   )
 }
 
-const CurrentPriceAPI = ({ CurrentPriceWS, CurrentCurrencyAPI }) => {
+const CurrentPriceAPI = ({ currentPriceWS, currentCurrencyAPI }) => {
   return (
     <Typography component='div' className='currenctPriceContainer'>
       <Typography
@@ -59,7 +70,7 @@ const CurrentPriceAPI = ({ CurrentPriceWS, CurrentCurrencyAPI }) => {
         </Typography>
         <input
           type='text'
-          defaultValue={CurrentPriceWS}
+          defaultValue={currentPriceWS}
           className='input-price'
         />
         <Typography
@@ -67,14 +78,14 @@ const CurrentPriceAPI = ({ CurrentPriceWS, CurrentCurrencyAPI }) => {
           className='currencyFromAPI input-suffix'
           style={{ marginRight: '8px' }}
         >
-          <Typography variant='label'>{CurrentCurrencyAPI}</Typography>
+          <Typography variant='label'>{currentCurrencyAPI}</Typography>
         </Typography>
       </Typography>
     </Typography>
   )
 }
 
-const Quantity = ({ QuantityToBuy, CurrentCurrencyAPI }) => {
+const Quantity = ({ quantityToBuy, currentCurrencyAPI }) => {
   return (
     <Typography component='div' className='currenctPriceContainer'>
       <Typography
@@ -91,7 +102,7 @@ const Quantity = ({ QuantityToBuy, CurrentCurrencyAPI }) => {
         </Typography>
         <input
           type='text'
-          defaultValue={QuantityToBuy}
+          defaultValue={quantityToBuy}
           className='input-price'
         />
         <Typography
@@ -99,32 +110,75 @@ const Quantity = ({ QuantityToBuy, CurrentCurrencyAPI }) => {
           className='currencyFromAPI input-suffix'
           style={{ marginRight: '8px' }}
         >
-          <Typography variant='label'>{CurrentCurrencyAPI}</Typography>
+          <Typography variant='label'>{currentCurrencyAPI}</Typography>
         </Typography>
       </Typography>
     </Typography>
   )
 }
 
-const ActionButtons = ({ buySubmit, sellSubmit }) => {
+function OrdersSend(
+  token, 
+  side, 
+  type, 
+  timeInForce,
+  quantity,
+  price,
+) {
+
+    binance
+    .sendOrder(token, side, type, timeInForce, quantity, price)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error)) 
+    
+}
+
+const ActionButtons = () => {
+
+  let initialState 
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'BUY':
+        OrdersSend(
+          'BTCUSDT',
+          'BUY',
+          'LIMIT',
+          'GTC',
+          0.3,
+          38880
+        )
+      break
+      case 'SELL':
+        OrdersSend(
+          'BTCUSDT',
+          'SELL',
+          'LIMIT',
+          'GTC',
+          0.3,
+          38880
+        )
+      break
+      default:
+        throw new Error();
+    }
+  }
+  const [state, dispatch] = React.useReducer(reducer, initialState)
   return (
     <Typography component='div' style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <Typography
-        component='button'
+      <button
         className='order-btn order-buy'
-        onSubmit={buySubmit}
+        onClick={() => {dispatch({type: 'BUY'})}}
       >
         Buy
-      </Typography>
-      <Typography
-        component='button'
+      </button>
+      <button
         className='order-btn order-sell'
-        onSubmit={sellSubmit}
+        onClick={() => {dispatch({type: 'SELL'})}}
       >
         Sell
-      </Typography>
+      </button>
     </Typography>
   )
 }
 
-// CREATE BUYSUBMIT AND SELLSUBMIT WITH IMPORT ORDERS FROM BINANCE PROVIDER / ORDERSEND

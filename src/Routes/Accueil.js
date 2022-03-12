@@ -1,15 +1,15 @@
 import React from "react";
 import OrdersPanel from "components/PanelOrders";
 //import NavBar from "components/NavBar";
-import TypeOrdersMenu from "components/OrdersNav";
+import OrdersNav from "components/OrdersNav";
 import CssBaseline from "@mui/material/CssBaseline";
 import SignalTable from "components/GridSignals";
 import StatsPanel from "components/GlobalStats";
 import Header from '../components/Header'
-import OrderSend from '../components/OrdersSend'
+
 
 const Accueil = () => {
-  const [selectedToken, setSelectedToken] = React.useState("BTC/USDT");
+  const [selectedToken, setSelectedToken] = React.useState("BTCUSDT");
   console.log(selectedToken);
   
   return (
@@ -22,13 +22,13 @@ const Accueil = () => {
           <StatsPanel />
           <SignalTable onSelectedToken={setSelectedToken} />
         </div>
-        <TypeOrdersMenu 
+        <OrdersNav
           className="central-container-right" 
           selectedToken={selectedToken}
         />
       </div>
       <OrdersPanel />
-      <OrderSend />
+
     </div>
   );
 };

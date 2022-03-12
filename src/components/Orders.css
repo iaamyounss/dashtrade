@@ -138,3 +138,7 @@
   justify-content: space-between;
   padding: 5px;
 }
+
+.isActive {
+  color: #f0b90b;
+}
