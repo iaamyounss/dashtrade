@@ -10,14 +10,12 @@ import './Orders.css'
 
 export default function Market({
     currentCurrencyAPI,   
-    currentPriceWS,
 }) {
     
     return(
         <>
             <Orders 
                 currentCurrencyAPI={currentCurrencyAPI}
-                currentPriceWS={currentPriceWS}
                 type="MARKET"
             />
         </>

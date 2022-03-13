@@ -14,11 +14,18 @@ import './Orders.css'
 export default function Orders({
   currentCurrencyAPI,
   type, 
-  timeInForce="GTC",
-  quantityToBuy=0.03,
-  currentPriceWS=39180, 
+  currentPriceWS, 
 }) {
 
+  const [quantity, setQuantity] = React.useState(0)
+  console.log(quantity)
+  const handleQuantityChange = (quantity) => {
+    setQuantity(quantity.target.value)
+  }
+
+  //  CurrentPriceAPI component take the currency on props and it value from API
+  // Quantity take quantityToBuy= as props to push to API the qty to buy/sell 
+  // ActionButtons Submit API 
   return (
     <div>
       <Typography
@@ -29,24 +36,24 @@ export default function Orders({
           {currentCurrencyAPI}
         </Typography>
       </Typography>
-      {/* The CurrentPriceApi component take the currency on props and it value from API */}
+      
       <CurrentPriceAPI
         currentPriceWS={currentPriceWS}
         currentCurrencyAPI={currentCurrencyAPI}
       />
+
       <br />
-      {/* Quantity take quantityToBuy= as props to push to API the qty to buy/sell */}
       <Quantity
-        quantityToBuy={quantityToBuy}
+        quantity={quantity}
+        setQuantity={handleQuantityChange}
         currentCurrencyAPI={currentCurrencyAPI}
       />
+      
       <br />
-      {/* ActionButtons Submit API */}
       <ActionButtons 
           currentCurrencyAPI={currentCurrencyAPI}
           type={type}
-          timeInForce={timeInForce}
-          quantityToBuy={quantityToBuy}
+          quantityToBuy={quantity}
           currentPriceWS={currentPriceWS}
       />
     </div>
@@ -54,6 +61,7 @@ export default function Orders({
 }
 
 const CurrentPriceAPI = ({ currentPriceWS, currentCurrencyAPI }) => {
+
   return (
     <Typography component='div' className='currenctPriceContainer'>
       <Typography
@@ -70,7 +78,7 @@ const CurrentPriceAPI = ({ currentPriceWS, currentCurrencyAPI }) => {
         </Typography>
         <input
           type='text'
-          defaultValue={currentPriceWS}
+          value={currentPriceWS}
           className='input-price'
         />
         <Typography
@@ -85,7 +93,8 @@ const CurrentPriceAPI = ({ currentPriceWS, currentCurrencyAPI }) => {
   )
 }
 
-const Quantity = ({ quantityToBuy, currentCurrencyAPI }) => {
+const Quantity = ({ quantity = 0, setQuantity, currentCurrencyAPI }) => {
+
   return (
     <Typography component='div' className='currenctPriceContainer'>
       <Typography
@@ -102,7 +111,8 @@ const Quantity = ({ quantityToBuy, currentCurrencyAPI }) => {
         </Typography>
         <input
           type='text'
-          defaultValue={quantityToBuy}
+          value={quantity}
+          onChange={setQuantity}
           className='input-price'
         />
         <Typography
@@ -133,48 +143,61 @@ function OrdersSend(
     
 }
 
-const ActionButtons = () => {
+const ActionButtons = ({currentCurrencyAPI, type, quantityToBuy, currentPriceWS}) => {
 
-  let initialState 
 
-  function reducer(state, action) {
-    switch (action.type) {
-      case 'BUY':
-        OrdersSend(
-          'BTCUSDT',
-          'BUY',
-          'LIMIT',
-          'GTC',
-          0.3,
-          38880
-        )
-      break
-      case 'SELL':
-        OrdersSend(
-          'BTCUSDT',
-          'SELL',
-          'LIMIT',
-          'GTC',
-          0.3,
-          38880
-        )
-      break
-      default:
-        throw new Error();
-    }
+  const [buyOrder, setBuyOrder] = React.useState(
+    currentCurrencyAPI,
+    'BUY',
+    type, 
+    "GTC",
+    quantityToBuy,
+    currentPriceWS,
+  )
+  const handleBuyOrder = () => {
+    setBuyOrder(
+      OrdersSend(
+        currentCurrencyAPI, 
+        'BUY', 
+        type, 
+        'GTC',
+        quantityToBuy, 
+        currentPriceWS,
+      )
+    )
   }
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+
+  const [sellOrder, setSellOrder] = React.useState(
+    currentCurrencyAPI,
+    'BUY',
+    type, 
+    "GTC",
+    quantityToBuy,
+    currentPriceWS,
+  )
+  const handleSellOrder = () => {
+    setSellOrder(
+      OrdersSend(
+        currentCurrencyAPI, 
+        'SELL', 
+        type, 
+        'GTC',
+        quantityToBuy, 
+        currentPriceWS,
+      )
+    )
+  }
   return (
     <Typography component='div' style={{ display: 'flex', justifyContent: 'space-between' }}>
       <button
         className='order-btn order-buy'
-        onClick={() => {dispatch({type: 'BUY'})}}
+        onClick={handleBuyOrder}
       >
         Buy
       </button>
       <button
         className='order-btn order-sell'
-        onClick={() => {dispatch({type: 'SELL'})}}
+        onClick={handleSellOrder}
       >
         Sell
       </button>
