@@ -9,9 +9,25 @@ import {
   bfPositionsendPoint,
   bfOrderEndPoint,
   bfPriceEndPoint,
+  bfKlinesEndPoint,
 } from "../../config.js";
 
 const apiKeys = { APIKEY, APISECRET };
+
+// Generic function used for GET API unsigned call
+async function clientGetApiBinance(url, endPoint, dataQueryString) {
+  const urlString = url + endPoint + dataQueryString;
+
+  return axios
+    .get(urlString)
+    .then((response) => {
+      console.log("Got the response");
+      return response;
+    })
+    .catch((error) => {
+      console.log("Debug>>> " + error);
+    });
+}
 
 // Generic function used for API call
 async function clientApiSignedBinance(
@@ -21,21 +37,21 @@ async function clientApiSignedBinance(
   apiKeys,
   method
 ) {
-  const signature = CryptoJS
+  const signature = crypto
     .HmacSHA256(dataQueryString, apiKeys.APISECRET)
-    .toString(CryptoJS.enc.Hex);
-  const proxy = 'https://calm-caverns-53376.herokuapp.com/'
+    .toString(crypto.enc.Hex);
+
   const options = {
-    url: proxy + url + endPoint + "?" + dataQueryString + "&signature=" + signature,
+    url: url + endPoint + "?" + dataQueryString + "&signature=" + signature,
     method: method,
     headers: {
       "X-MBX-APIKEY": apiKeys.APIKEY,
-  },
+    },
   };
 
   return axios(options)
     .then((response) => {
-      console.log("Got the response");
+      console.log("Got the response API Signed");
       return response;
     })
     .catch((error) => {
@@ -120,10 +136,66 @@ async function sendOrder(
   );
 }
 
+// Delete order function - Need Token and existing orderId & origClientOrderId for the order we want to close/delete
+async function closeOrder(token, orderId, origClientOrderId) {
+  const dataQueryString =
+    `symbol=${token}&orderId=${orderId}&origClientOrderId=${origClientOrderId}&recvWindow=20000&timestamp=` +
+    Date.now();
+
+  return clientApiSignedBinance(
+    bUrl,
+    bfOrderEndPoint,
+    dataQueryString,
+    apiKeys,
+    "DELETE"
+  );
+}
+
+// Get the last candle data for one Token
+async function getHistoCandleToken(token, interval, limit) {
+  const dataQueryString = `?symbol=${token}&interval=${interval}&limit=${limit}`;
+  try {
+    const lastCandle = await clientGetApiBinance(
+      bUrl,
+      bfKlinesEndPoint,
+      dataQueryString
+    );
+    return { interval: interval, candle: lastCandle.data[0] };
+  } catch {
+    throw Error("getHistoCandleToken failed");
+  }
+}
+
+// Get trend one toke and a list of interval
+// ["15m", "30m", "1h", "2h", "4h", "6h", "8h", "12h","1d","3d","1w"]
+// Open time, Open, High, Low, Close (or latest price), Volume, Close time, Quote asset volume,
+// ...Number of trades, Taker buy volume, Taker buy quote asset volume, Ignore.
+async function getTrendTokenInterval(token, intervals) {
+  try {
+    const results = await Promise.all(
+      intervals.map((interval) => getHistoCandleToken(token, interval, 1))
+    );
+    const data = await results.map((result) => {
+      const trd =
+        parseFloat(result.candle[4] - parseFloat(result.candle[1])) > 0.0
+          ? "Up"
+          : "Down";
+      return { interval: result.interval, trend: trd };
+    });
+
+    return data;
+  } catch {
+    throw Error("getTrendTokenInterval all failed");
+  }
+}
+
 export {
   getLastPriceToken,
   getAccountBalances,
   getAllOrdersByToken,
   getAllPositionsByToken,
   sendOrder,
+  closeOrder,
+  getHistoCandleToken,
+  getTrendTokenInterval,
 };
