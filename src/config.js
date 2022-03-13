@@ -7,4 +7,7 @@ module.exports = {
   bfPositionsendPoint: "/fapi/v2/positionRisk",
   bfOrderEndPoint: "/fapi/v1/order",
   bfPriceEndPoint: "/fapi/v1/ticker/price",
+  bfKlinesEndPoint: "/fapi/v1/klines",
+  statsGreedAndFearUrl: "https://api.alternative.me",
+  statsGreedAndFearEndPoint: "/fng/",
 };
