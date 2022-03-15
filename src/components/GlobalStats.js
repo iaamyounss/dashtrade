@@ -1,14 +1,9 @@
-// npm install --save recharts
-// npm install react-gauge-chart
-// npm install d3-scale-chromatic
-// npm install react-number-format
 import * as React from "react";
 import Container from "@mui/material/Container";
-import { Grid, Divider, Paper, Box } from "@mui/material";
+import { Paper } from "@mui/material";
 import "./GlobalStats.css";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import GaugeChart from "react-gauge-chart";
-//import { green, red } from "@mui/material/colors";
 import * as stats from "../API/statsProvider";
 import Typography from "@mui/material/Typography";
 import NumberFormat from "react-number-format";

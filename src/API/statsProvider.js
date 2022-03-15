@@ -1,7 +1,7 @@
 import axios from "axios";
-import { statsGreedAndFearEndPoint, statsGreedAndFearUrl } from "../config.js";
 
 // Generic function used for API call
+/*
 async function clientApi(url, endPoint, dataQueryString, method) {
   const queryString = dataQueryString ? "?" + dataQueryString : "";
 
@@ -19,6 +19,7 @@ async function clientApi(url, endPoint, dataQueryString, method) {
       console.log("Debug>>> " + error);
     });
 }
+*/
 
 // Greed & Fear indicator API call
 async function getGreedAndFearIndex() {
@@ -78,6 +79,7 @@ function getTrendToken(row) {
   let up = 0;
   let down = 0;
   let i = 0;
+  // eslint-disable-next-line
   for (let [key, value] of Object.entries(row)) {
     for (let [subKey, subValue] of Object.entries(value)) {
       if (subKey === "trend") {

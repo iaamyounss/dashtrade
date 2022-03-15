@@ -7,15 +7,14 @@ import { Link } from "react-location";
 import "Routes/styles.css";
 
 const Header = () => {
-
   const { logout } = useAuth();
   // remove the dfault state cause of warn
-  const [ setError] = useState("");
+  const [setError] = useState("");
   const margin10 = { margin: 10 };
 
   async function logOut() {
     try {
-      setError("");
+      //setError("");
       await logout();
     } catch {
       setError("La déconnexion a échoué");

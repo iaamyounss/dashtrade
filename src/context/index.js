@@ -1,7 +1,8 @@
-import createTheme from '@mui/material/styles/createTheme'
-import ThemeProvider from '@mui/material/styles/ThemeProvider'
-import AuthContextProvider from 'context/utils/AuthContext'
-import TabsContextProvider from 'context/utils/TabsContext'
+import createTheme from "@mui/material/styles/createTheme";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
+import AuthContextProvider from "context/utils/AuthContext";
+import TabsContextProvider from "context/utils/TabsContext";
+import ExchangeContextProvider from "./utils/ExchangeContext";
 // import { QueryClient, QueryClientProvider } from 'react-query'
 // import { ReactQueryDevtools } from 'react-query/devtools'
 // import { HistoryContextProvider } from './HistoryContext'
@@ -31,15 +32,15 @@ import TabsContextProvider from 'context/utils/TabsContext'
 
 const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
     primary: {
-      main: '#767676',
+      main: "#767676",
     },
     secondary: {
-      main: '#E50914',
+      main: "#E50914",
     },
   },
-})
+});
 
 const AppProviders = ({ children }) => {
   return (
@@ -47,7 +48,9 @@ const AppProviders = ({ children }) => {
     <ThemeProvider theme={theme}>
       {/* <HistoryContextProvider> */}
       <TabsContextProvider>
-        <AuthContextProvider>{children} </AuthContextProvider>
+        <AuthContextProvider>
+          <ExchangeContextProvider>{children}</ExchangeContextProvider>
+        </AuthContextProvider>
       </TabsContextProvider>
       {/* </HistoryContextProvider> */}
     </ThemeProvider>
@@ -55,7 +58,7 @@ const AppProviders = ({ children }) => {
     //     <ReactQueryDevtools initialIsOpen={false} />
     //   )}
     // </QueryClientProvider>
-  )
-}
+  );
+};
 
-export { AppProviders }
+export { AppProviders };
