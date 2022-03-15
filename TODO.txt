@@ -1,6 +1,0 @@
-    TypeOrdersMenu
-
-        Create Limit and Market components and a router between them
-        Switch between
-        Add homogeneous style for the components
-  
