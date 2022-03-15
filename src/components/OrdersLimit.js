@@ -1,20 +1,22 @@
 import React from 'react';
-import TypeOrders from './Orders'
+import Orders from './Orders'
 import './Orders.css'
 
-//Limit component return un type d'ordre == limit
-// prend les props suivantes : 
-// CurrentCurrencyAPI : get the current currency from API 
-// CurrentPriceWS    : get the current price in realtime from websocket 
-// QuantityToBuy          : post the qty you want to buy/sell 
+//Limit component return order type == limit
+//  props  : 
+// currentCurrencyAPI  : get the current currency from API
+// currentPriceWS : get the current price in realtime from websocket
+// type : Is limit or market ? 
 
+export default function Limit({
+    currentCurrencyAPI
+}) {
 
-export default function Limit({CurrentCurrencyAPI}) {
-    console.log('limit')
     return(
         <>
-            <TypeOrders 
-                CurrentCurrencyAPI={CurrentCurrencyAPI}
+            <Orders 
+                currentCurrencyAPI={currentCurrencyAPI}
+                type="LIMIT"
             />
         </>
     )

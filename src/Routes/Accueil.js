@@ -1,7 +1,7 @@
 import React from "react";
 import OrdersPanel from "components/PanelOrders";
 //import NavBar from "components/NavBar";
-import TypeOrdersMenu from "components/OrdersNav";
+import OrdersNav from "components/OrdersNav";
 import CssBaseline from "@mui/material/CssBaseline";
 import SignalTable from "components/GridSignals";
 import StatsPanel from "components/GlobalStats";
@@ -28,7 +28,10 @@ const Accueil = () => {
             setTrendUpdate={handleTrendUpdate}
           />
         </div>
-        <TypeOrdersMenu className="central-container-right" />
+        <OrdersNav
+          className="central-container-right" 
+          selectedToken={selectedToken}
+        />
       </div>
       <OrdersPanel />
     </div>
