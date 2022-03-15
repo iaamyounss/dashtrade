@@ -104,7 +104,6 @@ export default function SignalTable({ onSelectedToken, setTrendUpdate }) {
         "1w",
       ])
       .then((response) => setTrendData(response));
-    //.then((response) => console.log("signalTable", response));
   }, [listTokens, minutes]);
 
   // Merge the existing grid with new trend data from API
@@ -133,9 +132,9 @@ export default function SignalTable({ onSelectedToken, setTrendUpdate }) {
           }
         : { ...row };
     });
-    //console.log("signalTable-All trendData", trendData);
     setRows(newRows);
     handleTrendUpdate(newRows);
+    /* eslint-disable react-hooks/exhaustive-deps */
   }, [trendData]);
 
   return (

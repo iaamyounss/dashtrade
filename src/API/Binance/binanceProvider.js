@@ -1,8 +1,8 @@
 import CryptoJS from "crypto-js";
 import axios from "axios";
 import {
-  APIKEY,
-  APISECRET,
+  //APIKEY,
+  //APISECRET,
   bfAccountBalanceEndPoint,
   bfAllOrdersEndPoint,
   bUrl,
@@ -12,7 +12,7 @@ import {
   bfKlinesEndPoint,
 } from "../../config.js";
 
-const apiKeys = { APIKEY, APISECRET };
+//const apiKeys = { APIKEY, APISECRET };
 
 // Generic function used for GET API unsigned call
 async function clientGetApiBinance(url, endPoint, dataQueryString) {
@@ -31,18 +31,26 @@ async function clientGetApiBinance(url, endPoint, dataQueryString) {
 
 // Generic function used for API call
 async function clientApiSignedBinance(
+  apiKeys,
   url,
   endPoint,
   dataQueryString,
-  apiKeys,
   method
 ) {
-  const signature = CryptoJS
-    .HmacSHA256(dataQueryString, apiKeys.APISECRET)
-    .toString(CryptoJS.enc.Hex);
-  const proxy = 'https://calm-caverns-53376.herokuapp.com/'
+  const signature = CryptoJS.HmacSHA256(
+    dataQueryString,
+    apiKeys.APISECRET
+  ).toString(CryptoJS.enc.Hex);
+  const proxy = "https://calm-caverns-53376.herokuapp.com/";
   const options = {
-    url: proxy + url + endPoint + "?" + dataQueryString + "&signature=" + signature,
+    url:
+      proxy +
+      url +
+      endPoint +
+      "?" +
+      dataQueryString +
+      "&signature=" +
+      signature,
     method: method,
     headers: {
       "X-MBX-APIKEY": apiKeys.APIKEY,
@@ -60,62 +68,63 @@ async function clientApiSignedBinance(
 }
 
 // Get the last price for one Token
-async function getLastPriceToken(token) {
+async function getLastPriceToken(apiKeys, token) {
   const dataQueryString =
-    `symbol=${token}&recvWindow=20000&timestamp=` + Date.now();
+    `?symbol=${token}&recvWindow=20000&timestamp=` + Date.now();
 
-  return clientApiSignedBinance(
+  return clientGetApiBinance(
+    apiKeys,
     bUrl,
     bfPriceEndPoint,
     dataQueryString,
-    apiKeys,
     "GET"
   );
 }
 
 // Get the available balances for the current account
-async function getAccountBalances() {
+async function getAccountBalances(apiKeys) {
   const dataQueryString = "recvWindow=20000&timestamp=" + Date.now();
 
   return clientApiSignedBinance(
+    apiKeys,
     bUrl,
     bfAccountBalanceEndPoint,
     dataQueryString,
-    apiKeys,
     "GET"
   );
 }
 
 // Get all orders for one token
-async function getAllOrdersByToken(token) {
+async function getAllOrdersByToken(apiKeys, token) {
   const dataQueryString =
     `symbol=${token}&recvWindow=20000&timestamp=` + Date.now();
 
   return clientApiSignedBinance(
+    apiKeys,
     bUrl,
     bfAllOrdersEndPoint,
     dataQueryString,
-    apiKeys,
     "GET"
   );
 }
 
 // Get all opened positions for one token
-async function getAllPositionsByToken(token) {
+async function getAllPositionsByToken(apiKeys, token) {
   const dataQueryString =
     `symbol=${token}&recvWindow=20000&timestamp=` + Date.now();
 
   return clientApiSignedBinance(
+    apiKeys,
     bUrl,
     bfPositionsendPoint,
     dataQueryString,
-    apiKeys,
     "GET"
   );
 }
 
 // Send order function
 async function sendOrder(
+  apiKeys,
   token,
   side,
   type,
@@ -128,25 +137,25 @@ async function sendOrder(
     Date.now();
 
   return clientApiSignedBinance(
+    apiKeys,
     bUrl,
     bfOrderEndPoint,
     dataQueryString,
-    apiKeys,
     "POST"
   );
 }
 
 // Delete order function - Need Token and existing orderId & origClientOrderId for the order we want to close/delete
-async function closeOrder(token, orderId, origClientOrderId) {
+async function closeOrder(apiKeys, token, orderId, origClientOrderId) {
   const dataQueryString =
     `symbol=${token}&orderId=${orderId}&origClientOrderId=${origClientOrderId}&recvWindow=20000&timestamp=` +
     Date.now();
 
   return clientApiSignedBinance(
+    apiKeys,
     bUrl,
     bfOrderEndPoint,
     dataQueryString,
-    apiKeys,
     "DELETE"
   );
 }
