@@ -3,6 +3,34 @@ import Typography from '@mui/material/Typography'
 import * as binance from '../API/Binance/binanceProvider'
 import './Orders.css'
 
+
+// import functions from binance provider 
+function OrdersSend(
+  token, 
+  side, 
+  type, 
+  timeInForce,
+  quantity,
+  price,
+) {
+
+    binance
+    .sendOrder(token, side, type, timeInForce, quantity, price)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error)) 
+    
+}
+
+function updateLastPrice(currentCurrencyAPI, setLastPrice){
+
+  binance
+    .getLastPriceToken(currentCurrencyAPI)
+    .then((response) => setLastPrice(response.data.price))
+    .catch((error) => console.log(error))
+  
+  return null
+}
+
 // Orders is a component who take the current information from the API for the client and push the orders the client want to the API
 // props : 
 // currentCurrencyAPI  : get the current currency from API
@@ -11,34 +39,36 @@ import './Orders.css'
 // quantityToBuy    : post the qty you want to buy/sell
 // currentPriceWS : get the current price in realtime from websocket
 
+
+
 export default function Orders({
   currentCurrencyAPI,
   type, 
-  currentPriceWS, 
 }) {
+  
+  const [lastPrice, setLastPrice] = React.useState('')
+  const updatePrice = () => updateLastPrice(currentCurrencyAPI, setLastPrice)
+  React.useEffect(() => {
+    updatePrice()
+  },[])
 
   const [quantity, setQuantity] = React.useState(0)
-  console.log(quantity)
   const handleQuantityChange = (quantity) => {
     setQuantity(quantity.target.value)
   }
-
   //  CurrentPriceAPI component take the currency on props and it value from API
   // Quantity take quantityToBuy= as props to push to API the qty to buy/sell 
   // ActionButtons Submit API 
   return (
     <div>
-      <Typography
-        component='div'
-        style={{ display: 'flex', justifyContent: 'center' }}
-      >
-        <Typography component='span' style={{ textAlign: 'center' }}>
+      <Typography component='div' style={{ display: 'flex', justifyContent: 'center' }}><Typography component='span' style={{ textAlign: 'center' }}>
           {currentCurrencyAPI}
         </Typography>
       </Typography>
       
       <CurrentPriceAPI
-        currentPriceWS={currentPriceWS}
+        currentPrice={lastPrice}
+        updatePrice={updatePrice}
         currentCurrencyAPI={currentCurrencyAPI}
       />
 
@@ -51,16 +81,22 @@ export default function Orders({
       
       <br />
       <ActionButtons 
-          currentCurrencyAPI={currentCurrencyAPI}
           type={type}
           quantityToBuy={quantity}
-          currentPriceWS={currentPriceWS}
+          currentPrice={lastPrice}
+          currentCurrencyAPI={currentCurrencyAPI}
       />
     </div>
   )
 }
 
-const CurrentPriceAPI = ({ currentPriceWS, currentCurrencyAPI }) => {
+
+const CurrentPriceAPI = ({currentCurrencyAPI, currentPrice, updatePrice}) => {
+  /* 
+  on click  R -> refresh price input value 
+  lift state up ->  parent 
+  parent props drill to action Buttons
+  */
 
   return (
     <Typography component='div' className='currenctPriceContainer'>
@@ -76,11 +112,18 @@ const CurrentPriceAPI = ({ currentPriceWS, currentCurrencyAPI }) => {
         >
           <Typography variant='label'>Price</Typography>
         </Typography>
-        <input
-          type='text'
-          value={currentPriceWS}
-          className='input-price'
-        />
+
+        <span className='input-price'>{currentPrice}</span>
+
+        <Typography
+          component='button'
+          className='currencyFromAPI'
+          style={{ marginRight: '8px', marginLeft: '8px' }}
+          onClick={updatePrice}
+        >
+          R
+        </Typography>
+        
         <Typography
           component='div'
           className='currencyFromAPI input-suffix'
@@ -93,7 +136,7 @@ const CurrentPriceAPI = ({ currentPriceWS, currentCurrencyAPI }) => {
   )
 }
 
-const Quantity = ({ quantity = 0, setQuantity, currentCurrencyAPI }) => {
+const Quantity = ({ quantity = 0.02, setQuantity, currentCurrencyAPI }) => {
 
   return (
     <Typography component='div' className='currenctPriceContainer'>
@@ -127,32 +170,16 @@ const Quantity = ({ quantity = 0, setQuantity, currentCurrencyAPI }) => {
   )
 }
 
-function OrdersSend(
-  token, 
-  side, 
-  type, 
-  timeInForce,
-  quantity,
-  price,
-) {
-
-    binance
-    .sendOrder(token, side, type, timeInForce, quantity, price)
-    .then((response) => console.log(response))
-    .catch((error) => console.log(error)) 
-    
-}
-
-const ActionButtons = ({currentCurrencyAPI, type, quantityToBuy, currentPriceWS}) => {
+const ActionButtons = ({currentCurrencyAPI, currentPrice, type, quantityToBuy}) => {
 
 
-  const [buyOrder, setBuyOrder] = React.useState(
+  const [, setBuyOrder] = React.useState(
     currentCurrencyAPI,
     'BUY',
     type, 
     "GTC",
     quantityToBuy,
-    currentPriceWS,
+    currentPrice,
   )
   const handleBuyOrder = () => {
     setBuyOrder(
@@ -162,18 +189,18 @@ const ActionButtons = ({currentCurrencyAPI, type, quantityToBuy, currentPriceWS}
         type, 
         'GTC',
         quantityToBuy, 
-        currentPriceWS,
+        currentPrice,
       )
     )
   }
 
-  const [sellOrder, setSellOrder] = React.useState(
+  const [, setSellOrder] = React.useState(
     currentCurrencyAPI,
     'BUY',
     type, 
     "GTC",
     quantityToBuy,
-    currentPriceWS,
+    currentPrice,
   )
   const handleSellOrder = () => {
     setSellOrder(
@@ -183,7 +210,7 @@ const ActionButtons = ({currentCurrencyAPI, type, quantityToBuy, currentPriceWS}
         type, 
         'GTC',
         quantityToBuy, 
-        currentPriceWS,
+        currentPrice,
       )
     )
   }

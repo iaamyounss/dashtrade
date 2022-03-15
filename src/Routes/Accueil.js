@@ -8,10 +8,11 @@ import StatsPanel from "components/GlobalStats";
 import Header from '../components/Header'
 
 
+
 const Accueil = () => {
   const [selectedToken, setSelectedToken] = React.useState("BTCUSDT");
   console.log(selectedToken);
-  
+
   return (
     <div className="container">
 
@@ -34,4 +35,3 @@ const Accueil = () => {
 };
 
 export default Accueil;
-
