@@ -68,12 +68,11 @@ async function clientApiSignedBinance(
 }
 
 // Get the last price for one Token
-async function getLastPriceToken(apiKeys, token) {
+async function getLastPriceToken(token) {
   const dataQueryString =
     `?symbol=${token}&recvWindow=20000&timestamp=` + Date.now();
 
   return clientGetApiBinance(
-    apiKeys,
     bUrl,
     bfPriceEndPoint,
     dataQueryString,
