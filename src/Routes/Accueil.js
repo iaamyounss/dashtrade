@@ -5,23 +5,28 @@ import OrdersNav from "components/OrdersNav";
 import CssBaseline from "@mui/material/CssBaseline";
 import SignalTable from "components/GridSignals";
 import StatsPanel from "components/GlobalStats";
-import Header from '../components/Header'
-
-
+import Header from "../components/Header";
 
 const Accueil = () => {
   const [selectedToken, setSelectedToken] = React.useState("BTCUSDT");
+  const [dataStats, setDataStats] = React.useState([]);
   console.log(selectedToken);
+
+  const handleTrendUpdate = (trendData) => {
+    setDataStats(trendData);
+  };
 
   return (
     <div className="container">
-
       <CssBaseline />
       <div className="central-container">
         <div className="central-container-left">
           <Header />
-          <StatsPanel />
-          <SignalTable onSelectedToken={setSelectedToken} />
+          <StatsPanel dataStats={dataStats} selectedToken={selectedToken} />
+          <SignalTable
+            onSelectedToken={setSelectedToken}
+            setTrendUpdate={handleTrendUpdate}
+          />
         </div>
         <OrdersNav
           className="central-container-right" 
@@ -29,7 +34,6 @@ const Accueil = () => {
         />
       </div>
       <OrdersPanel />
-
     </div>
   );
 };
