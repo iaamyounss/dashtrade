@@ -1,11 +1,13 @@
 import * as React from 'react'
 import Typography from '@mui/material/Typography'
+import { useExchange } from '../context/utils/ExchangeContext'
 import * as binance from '../API/Binance/binanceProvider'
 import './Orders.css'
 
 
 // import functions from binance provider 
 function OrdersSend(
+  apiKeys,
   token, 
   side, 
   type, 
@@ -15,7 +17,7 @@ function OrdersSend(
 ) {
 
     binance
-    .sendOrder(token, side, type, timeInForce, quantity, price)
+    .sendOrder(apiKeys, token, side, type, timeInForce, quantity, price)
     .then((response) => console.log(response))
     .catch((error) => console.log(error)) 
     
@@ -25,11 +27,12 @@ function updateLastPrice(currentCurrencyAPI, setLastPrice){
 
   binance
     .getLastPriceToken(currentCurrencyAPI)
-    .then((response) => setLastPrice(response.data.price))
+    .then((response) =>  setLastPrice(response.data.price))
     .catch((error) => console.log(error))
-  
+
   return null
 }
+
 
 // Orders is a component who take the current information from the API for the client and push the orders the client want to the API
 // props : 
@@ -40,14 +43,20 @@ function updateLastPrice(currentCurrencyAPI, setLastPrice){
 // currentPriceWS : get the current price in realtime from websocket
 
 
-
 export default function Orders({
   currentCurrencyAPI,
   type, 
 }) {
+  const { exchange } = useExchange()
+  const apiKeys = { 
+
+    APIKEY:exchange[0]?.publicKey,
+    APISECRET:exchange[0]?.privateKey,
   
+}
   const [lastPrice, setLastPrice] = React.useState('')
   const updatePrice = () => updateLastPrice(currentCurrencyAPI, setLastPrice)
+  /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
     updatePrice()
   },[])
@@ -56,6 +65,9 @@ export default function Orders({
   const handleQuantityChange = (quantity) => {
     setQuantity(quantity.target.value)
   }
+
+  
+
   //  CurrentPriceAPI component take the currency on props and it value from API
   // Quantity take quantityToBuy= as props to push to API the qty to buy/sell 
   // ActionButtons Submit API 
@@ -81,6 +93,7 @@ export default function Orders({
       
       <br />
       <ActionButtons 
+          apiKeys={apiKeys}
           type={type}
           quantityToBuy={quantity}
           currentPrice={lastPrice}
@@ -170,10 +183,11 @@ const Quantity = ({ quantity = 0.02, setQuantity, currentCurrencyAPI }) => {
   )
 }
 
-const ActionButtons = ({currentCurrencyAPI, currentPrice, type, quantityToBuy}) => {
+const ActionButtons = ({apiKeys, currentCurrencyAPI, currentPrice, type, quantityToBuy}) => {
 
 
   const [, setBuyOrder] = React.useState(
+    apiKeys,
     currentCurrencyAPI,
     'BUY',
     type, 
@@ -184,6 +198,7 @@ const ActionButtons = ({currentCurrencyAPI, currentPrice, type, quantityToBuy}) 
   const handleBuyOrder = () => {
     setBuyOrder(
       OrdersSend(
+        apiKeys,
         currentCurrencyAPI, 
         'BUY', 
         type, 
@@ -195,6 +210,7 @@ const ActionButtons = ({currentCurrencyAPI, currentPrice, type, quantityToBuy}) 
   }
 
   const [, setSellOrder] = React.useState(
+    apiKeys,
     currentCurrencyAPI,
     'BUY',
     type, 
@@ -205,6 +221,7 @@ const ActionButtons = ({currentCurrencyAPI, currentPrice, type, quantityToBuy}) 
   const handleSellOrder = () => {
     setSellOrder(
       OrdersSend(
+        apiKeys,
         currentCurrencyAPI, 
         'SELL', 
         type, 
