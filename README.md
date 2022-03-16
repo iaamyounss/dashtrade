@@ -4,4 +4,7 @@
 
 ### DashTrade 1.0.0 prendra entièrement en charge Binance pour les ordres Futures 
 
-Connexion : Création d'utilisateur via mail et mot de passe a garder 
+Connexion : 
+    Création de compte simple avec mail + mot de passe
+    Insertion des clés APIs depuis admin
+    Puis enjoy la v1 de DashTrade
