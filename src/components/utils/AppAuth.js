@@ -1,19 +1,19 @@
 import { lazy, Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "components/utils/ErrorFallback";
+import ErrorFallback from "Components/Utils/ErrorFallback";
 import { ReactLocation, Router, Outlet } from "react-location";
-import { useAuth } from "context/utils/AuthContext";
-import LoadingFullScreen from "components/utils/LoadingFullScreen";
+import { useAuth } from "Context/Utils/AuthContext";
+import LoadingFullScreen from "Components/Utils/LoadingFullScreen";
 
 function AuthApp() {
   const { logout } = useAuth();
-  const Accueil = lazy(() => import("Routes/Accueil"));
+  const Dashboard = lazy(() => import("Routes/Dashboard"));
   const Admin = lazy(() => import("Routes/Admin"));
 
   const routes = [
     {
       path: "/",
-      element: <Accueil />,
+      element: <Dashboard />,
       logout,
     },
     {

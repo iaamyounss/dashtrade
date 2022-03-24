@@ -1,5 +1,5 @@
 import griddata from "./griddata.json";
-import * as binance from "./Binance/binanceProvider";
+import * as binance from "./Exchanges/Binance/binanceProvider";
 
 // Split griddata element in two objects : signal (list) and trend [up or down]
 function buildObject(index, col) {

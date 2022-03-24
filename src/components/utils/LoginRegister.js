@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
-import { useAuth } from 'context/utils/AuthContext'
+import { useAuth } from 'Context/Utils/AuthContext'
 import { useImmer } from 'use-immer'
 
 const useStyles = makeStyles(theme => ({

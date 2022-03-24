@@ -1,8 +1,8 @@
 import createTheme from "@mui/material/styles/createTheme";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
-import AuthContextProvider from "context/utils/AuthContext";
-import TabsContextProvider from "context/utils/TabsContext";
-import ExchangeContextProvider from "./utils/ExchangeContext";
+import AuthContextProvider from "Context/Utils/AuthContext";
+import TabsContextProvider from "Context/Utils/TabsContext";
+import ExchangeContextProvider from "./Utils/ExchangeContext";
 // import { QueryClient, QueryClientProvider } from 'react-query'
 // import { ReactQueryDevtools } from 'react-query/devtools'
 // import { HistoryContextProvider } from './HistoryContext'

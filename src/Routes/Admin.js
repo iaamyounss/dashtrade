@@ -1,6 +1,6 @@
 import * as React from "react";
-import NavBar from "components/Header";
-import AdminPanel from "components/AdminPanel";
+import NavBar from "Components/Dashboard/Header";
+import AdminPanel from "Components/Admin/AdminPanel";
 
 export default function Admin() {
   return (

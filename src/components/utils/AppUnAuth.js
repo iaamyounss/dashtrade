@@ -1,4 +1,4 @@
-import LoginRegister from 'components/utils/LoginRegister'
+import LoginRegister from 'Components/Utils/LoginRegister'
 
 const imageUrl = 'images/Crypto-Trading-trading.jpg'
 
