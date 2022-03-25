@@ -1,12 +1,14 @@
 import * as React from "react";
-import Container from "@mui/material/Container";
-import { Paper } from "@mui/material";
-import "./GlobalStats.css";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import GaugeChart from "react-gauge-chart";
 import * as stats from "../../../API/statsProvider";
-import Typography from "@mui/material/Typography";
 import NumberFormat from "react-number-format";
+import "./GlobalStats.css";
+import { Paper } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import TableContainer from '@mui/material/TableContainer'
+//test
+import OrdersNav from '../Orders/OrdersNav'
 
 const COLORS = ["#00FF00", "#ff0000"];
 
@@ -15,7 +17,7 @@ const chartStyle = {
   paddingTop: "20%",
 };
 
-export default function StatsPanel({ dataStats, selectedToken }) {
+export default function GlobalStats({ dataStats, selectedToken }) {
   const [gdfIndex, setGdfIndex] = React.useState(0.5);
   const [globalTrend, setGlobalTrend] = React.useState([]);
   const [tokenTrend, setTokenTrend] = React.useState([]);
@@ -55,11 +57,11 @@ export default function StatsPanel({ dataStats, selectedToken }) {
     ]);
   }, [dataStats, selectedToken]);
 
-  // Stats Panel
-  return (
-    <Container maxWidth="100%" className="container-stats">
-      <Typography component="div" className="div-stats">
-        <ResponsiveContainer height={300}>
+// Stats Panel
+return (
+<TableContainer component={Paper} style={{display: 'flex'}}>
+
+        <ResponsiveContainer height={300} className="responsiveContainer">
           <GaugeChart
             id="gauge-chart2"
             nrOfLevels={25}
@@ -89,7 +91,7 @@ export default function StatsPanel({ dataStats, selectedToken }) {
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <ResponsiveContainer height={300}>
+        <ResponsiveContainer height={300} className="responsiveContainer">
           <PieChart>
             <Pie
               data={tokenTrend}
@@ -109,7 +111,7 @@ export default function StatsPanel({ dataStats, selectedToken }) {
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <ResponsiveContainer height={300}>
+        <ResponsiveContainer  height={300} className="responsiveContainer">
           <Typography component="div" className="div-stats-market">
             <Paper elevation={5} className="paper">
               <Typography variant="body1" className="paper-item1">
@@ -149,7 +151,9 @@ export default function StatsPanel({ dataStats, selectedToken }) {
             </Paper>
           </Typography>
         </ResponsiveContainer>
-      </Typography>
-    </Container>
+        <OrdersNav />
+</TableContainer>
+
   );
+
 }

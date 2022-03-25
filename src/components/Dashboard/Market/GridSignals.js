@@ -45,7 +45,7 @@ const columns = signalService.getColumns();
 
 export default function SignalTable({ onSelectedToken, setTrendUpdate }) {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([]);
   const [trendData, setTrendData] = React.useState([]);
   const [listTokens, setListToken] = React.useState([]);
@@ -201,7 +201,7 @@ export default function SignalTable({ onSelectedToken, setTrendUpdate }) {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[25, 50, 100]}
+        rowsPerPageOptions={[10, 25, 50, 100]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}

@@ -18,7 +18,7 @@ export default function OrdersNav({selectedToken}) {
 
   return (
     <div className='type-orders-menu'>
-      <Wallet />
+      
   
       <br />
       <div>

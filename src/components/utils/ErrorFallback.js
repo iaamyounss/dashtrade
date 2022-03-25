@@ -1,4 +1,4 @@
-import NavBar from '../Dashboard/Header'
+import NavBar from '../Header/Header'
 import 'Routes/Style.css'
 
 function ErrorFallback({ error, resetErrorBoundary }) {

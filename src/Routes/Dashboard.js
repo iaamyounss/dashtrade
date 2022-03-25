@@ -1,10 +1,10 @@
 import React from "react";
 import OrdersPanel from "Components/Dashboard/Positions/PanelOrders";
 import OrdersNav from "Components/Dashboard/Orders/OrdersNav";
-import CssBaseline from "@mui/material/CssBaseline";
 import SignalTable from "Components/Dashboard/Market/GridSignals";
-import StatsPanel from "Components/Dashboard/Market/GlobalStats";
-import Header from "../Components/Dashboard/Header";
+//import StatsPanel from "Components/Dashboard/Market/GlobalStats";
+import GlobalStats from "Components/Dashboard/Market/GlobalStats";
+import Header from "../Components/Header/Header";
 
 import { useAuth } from "Context/Utils/AuthContext";
 import { useExchange } from "Context/Utils/ExchangeContext.js";
@@ -48,21 +48,17 @@ const Dashboard = () => {
 
   return (
     <div className="container">
-      <CssBaseline />
-      <div className="central-container">
-        <div className="central-container-left">
+      
           <Header />
-          <StatsPanel dataStats={dataStats} selectedToken={selectedToken} />
+          <GlobalStats dataStats={dataStats} selectedToken={selectedToken} />
           <SignalTable
             onSelectedToken={setSelectedToken}
             setTrendUpdate={handleTrendUpdate}
           />
-        </div>
-        <OrdersNav
-          className="central-container-right"
-          selectedToken={selectedToken}
-        />
-      </div>
+          <OrdersNav
+            className="central-container-right"
+            selectedToken={selectedToken}
+          />
       <OrdersPanel />
     </div>
   );

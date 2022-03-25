@@ -8,7 +8,8 @@ import { useTabs } from 'Context/Utils/TabsContext'
 import PeriodSelect from './PanelPeriod'
 import './Panel.css'
 
-function TabList({ children, ...props }) {//FIXME rendre toute cette partie en composant panel générique
+function TabList({ children, ...props }) {
+  //FIXME rendre toute cette partie en composant panel générique
   const clones = Children.map(children, (child, tabId) =>
     cloneElement(child, {
       tabId,
