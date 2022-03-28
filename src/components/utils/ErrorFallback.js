@@ -1,10 +1,10 @@
-import NavBar from '../Header/Header'
+import ResponsiveHeader from "Components/Header/ResponsiveHeader";
 import 'Routes/Style.css'
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
     <>
-      <NavBar />
+      <ResponsiveHeader />
       <div
         role='alert'
         style={{

@@ -4,8 +4,7 @@ import OrdersNav from "Components/Dashboard/Orders/OrdersNav";
 import SignalTable from "Components/Dashboard/Market/GridSignals";
 //import StatsPanel from "Components/Dashboard/Market/GlobalStats";
 import GlobalStats from "Components/Dashboard/Market/GlobalStats";
-import Header from "../Components/Header/Header";
-
+import ResponsiveHeader from "Components/Header/ResponsiveHeader";
 import { useAuth } from "Context/Utils/AuthContext";
 import { useExchange } from "Context/Utils/ExchangeContext.js";
 import { db } from "../Firebase";
@@ -49,7 +48,7 @@ const Dashboard = () => {
   return (
     <div className="container">
       
-          <Header />
+          <ResponsiveHeader />
           <GlobalStats dataStats={dataStats} selectedToken={selectedToken} />
           <SignalTable
             onSelectedToken={setSelectedToken}

@@ -1,11 +1,11 @@
 import * as React from "react";
-import NavBar from "Components/Header/Header";
+import ResponsiveHeader from "Components/Header/ResponsiveHeader";
 import AdminPanel from "Components/Admin/AdminPanel";
 
 export default function Admin() {
   return (
     <>
-      <NavBar />
+      <ResponsiveHeader />
       <AdminPanel />
     </>
   );
