@@ -7,8 +7,6 @@ import "./GlobalStats.css";
 import { Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import TableContainer from '@mui/material/TableContainer'
-//test
-import OrdersNav from '../Orders/OrdersNav'
 
 const COLORS = ["#00FF00", "#ff0000"];
 
@@ -59,7 +57,7 @@ export default function GlobalStats({ dataStats, selectedToken }) {
 
 // Stats Panel
 return (
-<TableContainer component={Paper} style={{display: 'flex'}}>
+<TableContainer component={Paper} className="flex global-stats">
 
         <ResponsiveContainer height={300} className="responsiveContainer">
           <GaugeChart
@@ -151,7 +149,7 @@ return (
             </Paper>
           </Typography>
         </ResponsiveContainer>
-        <OrdersNav />
+
 </TableContainer>
 
   );

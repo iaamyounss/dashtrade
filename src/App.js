@@ -5,7 +5,6 @@ import LoadingFullScreen from 'Components/Utils/LoadingFullScreen'
 import createTheme from "@mui/material/styles/createTheme";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import AuthContextProvider from "Context/Utils/AuthContext";
-import TabsContextProvider from "Context/Utils/TabsContext";
 import ExchangeContextProvider from "./Context/Utils/ExchangeContext";
 const AuthApp = lazy(() => import(/* webpackPrefetch: true */ 'Components/Utils/AppAuth'))
 const UnauthApp = lazy(() => import('Components/Utils/AppUnAuth'))
@@ -26,12 +25,9 @@ const AppProviders = ({ children }) => {
   return (
 
     <ThemeProvider theme={theme}>
-      <TabsContextProvider>
         <AuthContextProvider>
           <ExchangeContextProvider>{children}</ExchangeContextProvider>
         </AuthContextProvider>
-      </TabsContextProvider>
-
     </ThemeProvider>
   );
 };

@@ -2,12 +2,41 @@ import { useState } from 'react'
 import Button from '@mui/material/Button'
 import Limit from './OrdersLimit'
 import Market from './OrdersMarket'
-import Wallet from './OrdersWallet'
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import CloseIcon from '@mui/icons-material/Close';
+//import Wallet from './OrdersWallet'
 import './Orders.css'
 
 
-export default function OrdersNav({selectedToken}) {
+
+export default function OrdersNav({selectedToken, open, onOpen }) {
+  const drawerBleeding = 56;
+
+return (
+  // Displaying the Order Form onClick
+  <SwipeableDrawer
+    anchor="bottom"
+    open={open}
+    onClose={onOpen}
+    onOpen={onOpen}
+    swipeAreaWidth={drawerBleeding}
+    disableSwipeToOpen={false}
+    ModalProps={{
+      keepMounted: true,
+    }}
+  >
+      <Button onClick={onOpen}>
+        <CloseIcon fontSize="large" />
+      </Button>
+      <OrderForm selectedToken={selectedToken} />
+
+  </SwipeableDrawer>
+)
+
+}
+  export function OrderForm({selectedToken}) {
   const [showLimit, setShowLimit] = useState(true)
+
 
   const handleLimitClick = () => {
     setShowLimit(!showLimit)
@@ -17,7 +46,8 @@ export default function OrdersNav({selectedToken}) {
   }
 
   return (
-    <div className='type-orders-menu'>
+    
+    <div style={{padding: '20px'}} className='type-orders-menu'>
       
   
       <br />

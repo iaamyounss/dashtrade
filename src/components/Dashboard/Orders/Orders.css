@@ -1,11 +1,16 @@
 
+  /*
 .type-orders-menu {
-  /*width: 350px;*/
+  width: 350px;
   background-color: rgb(21, 22, 21);
-  padding: 20px;
   color: white
+  padding: 20px;
 }
-
+*/
+.css-17j2vr {
+  background-color:rgb(246, 70, 93);
+   
+}
 .currenctPriceContainer {
   margin: 16px 0px 8px;
   min-width: 0px;

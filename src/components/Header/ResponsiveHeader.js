@@ -34,7 +34,7 @@ const ResponsiveHeader = () => {
           setError("la déconnexion a échoué")
       }
   }
-
+// factorise Links in React functional component for MàJ auto responsive 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">

@@ -1,4 +1,5 @@
 import * as React from "react";
+import Button from '@mui/material/Button'
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const columns = signalService.getColumns();
 
-export default function SignalTable({ onSelectedToken, setTrendUpdate }) {
+export default function SignalTable({ onSelectedToken, setTrendUpdate, handleOpen }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([]);
@@ -70,7 +71,7 @@ export default function SignalTable({ onSelectedToken, setTrendUpdate }) {
   const handleTrendUpdate = (rows) => {
     setTrendUpdate(rows);
   };
-
+  
   // Get the Signals and the corresponding token list
   React.useEffect(() => {
     const signals = signalService.getAllSignals();
@@ -176,11 +177,15 @@ export default function SignalTable({ onSelectedToken, setTrendUpdate }) {
                       return (
                         <TableCell key={index} align="center">
                           <Grid container>
-                            <Grid item lg={10}>
-                              {column === "symbol"
-                                ? row[column]
-                                : row[column].signal}
-                            </Grid>
+
+                              <Grid item lg={10}>
+                                {column === "symbol"
+                                  ? <Button onClick={handleOpen}>
+                                      {row[column]}
+                                    </Button>
+                                  : row[column].signal}
+                              </Grid>
+
                             <Grid item lg={2}>
                               {column === "symbol" ? null : String(
                                   row[column].trend
