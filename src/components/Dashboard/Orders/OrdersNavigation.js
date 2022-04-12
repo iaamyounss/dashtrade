@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Button from '@mui/material/Button'
-import Limit from './OrdersLimit'
-import Market from './OrdersMarket'
+import Orders from './Orders'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import CloseIcon from '@mui/icons-material/Close';
 //import Wallet from './OrdersWallet'
@@ -9,7 +8,7 @@ import './Orders.css'
 
 
 
-export default function OrdersNav({selectedToken, open, onOpen }) {
+export default function OrdersNavigation({selectedToken, open, onOpen }) {
   const drawerBleeding = 56;
 
 return (
@@ -67,12 +66,14 @@ return (
       </div>
       <br />
       {showLimit
-        ? <Limit 
+        ? <Orders 
             currentCurrencyAPI={selectedToken}
+            type="LIMIT"
             
           /> 
-        : <Market 
+        : <Orders 
             currentCurrencyAPI={selectedToken}
+            type="MARKET"
             
           />
       }

@@ -1,0 +1,13 @@
+separer la logic de la view
+
+dossier utils a la racine de src ( helper.js authapp )
+
+supprimer les librairies inutilisées ( use-immer, react-location or router )
+
+redirection url in netlify
+
+currency exchange
+
+view curent orders  from api
+
+switch to ccxt

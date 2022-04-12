@@ -1,13 +1,12 @@
-import { useAuth } from 'Context/Utils/AuthContext'
-import { lazy, Suspense } from 'react'
-//import { AppProviders } from 'Context'
-import LoadingFullScreen from 'Components/Utils/LoadingFullScreen'
+import { useAuth } from 'Context/AuthContext'
+import { Suspense } from 'react'
+import LoadingFullScreen from 'utils/LoadingFullScreen'
 import createTheme from "@mui/material/styles/createTheme";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
-import AuthContextProvider from "Context/Utils/AuthContext";
-import ExchangeContextProvider from "./Context/Utils/ExchangeContext";
-const AuthApp = lazy(() => import(/* webpackPrefetch: true */ 'Components/Utils/AppAuth'))
-const UnauthApp = lazy(() => import('Components/Utils/AppUnAuth'))
+import AuthContextProvider from "Context/AuthContext";
+import ExchangeContextProvider from "./Context/ExchangeContext";
+import { UnauthApp } from 'utils/AppAuth';
+import AuthApp from 'utils/AppAuth';
 
 const theme = createTheme({
   palette: {
@@ -26,7 +25,9 @@ const AppProviders = ({ children }) => {
 
     <ThemeProvider theme={theme}>
         <AuthContextProvider>
-          <ExchangeContextProvider>{children}</ExchangeContextProvider>
+          <ExchangeContextProvider>
+            {children}
+          </ExchangeContextProvider>
         </AuthContextProvider>
     </ThemeProvider>
   );

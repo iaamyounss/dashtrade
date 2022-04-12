@@ -1,13 +1,12 @@
 import React from "react";
 import Welcome from "../Components/Dashboard/Welcome"
 import ViewCurrentOrders from "Components/Dashboard/CurrentOrders/ViewCurrentOrders";
-import OrdersNav from "Components/Dashboard/Orders/OrdersNav";
+import OrdersNavigation from "Components/Dashboard/Orders/OrdersNavigation";
 import SignalTable from "Components/Dashboard/Valorization/GridSignals";
-//import StatsPanel from "Components/Dashboard/Market/GlobalStats";
 import GlobalStats from "Components/Dashboard/Valorization/GlobalStats";
 import ResponsiveHeader from "Components/Header/ResponsiveHeader";
-import { useAuth } from "Context/Utils/AuthContext";
-import { useExchange } from "Context/Utils/ExchangeContext.js";
+import { useAuth } from "Context/AuthContext";
+import { useExchange } from "Context/ExchangeContext.js";
 import { db } from "../Firebase";
 import {
   collection,
@@ -18,11 +17,11 @@ import {
 } from "firebase/firestore";
 
 const Dashboard = () => {
-  //select the currency
+  //select the currency : by default btc/usdt
   const [selectedToken, setSelectedToken] = React.useState("BTCUSDT");
   // ?
   const [dataStats, setDataStats] = React.useState([]);
-  // Open the order form to push 
+  // Open the form to create an order 
   const [openOrder, setOpenOrder] = React.useState(false);
   // Exchange hook 
   const { setExchange } = useExchange();
@@ -58,7 +57,7 @@ const Dashboard = () => {
   // move the signal tables to an alone Route
   // create a checkSignals to see the market currencys that i want
   return (
-    <div className="container">
+    <div>
           <ResponsiveHeader />
           <Welcome />
           <GlobalStats 
@@ -70,7 +69,7 @@ const Dashboard = () => {
             setTrendUpdate={handleTrendUpdate}
             handleOpen={handleOpen}
           />
-          <OrdersNav
+          <OrdersNavigation
             className="central-container-right"
             selectedToken={selectedToken}
             open={openOrder}

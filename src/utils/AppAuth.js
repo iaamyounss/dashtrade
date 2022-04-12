@@ -1,11 +1,12 @@
 import { lazy, Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "Components/Utils/ErrorFallback";
+import ErrorFallback from "utils/ErrorFallback";
 import { ReactLocation, Router, Outlet } from "react-location";
-import { useAuth } from "Context/Utils/AuthContext";
-import LoadingFullScreen from "Components/Utils/LoadingFullScreen";
+import { useAuth } from "Context/AuthContext";
+import LoadingFullScreen from "utils/LoadingFullScreen";
+import LoginRegister from 'utils/LoginRegister'
 
-function AuthApp() {
+export default function AuthApp() {
   const { logout } = useAuth();
   const Dashboard = lazy(() => import("Routes/Dashboard"));
   const Admin = lazy(() => import("Routes/Admin"));
@@ -40,4 +41,28 @@ function AuthApp() {
   );
 }
 
-export default AuthApp;
+
+
+
+const imageUrl = 'images/Crypto-Trading-trading.jpg'
+
+const backgroundStyle = {
+  backgroundImage: `url('${imageUrl}')`,
+  backgroundSize: 'cover',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+  overflow: 'auto',
+}
+
+export function UnauthApp() {
+  return (
+    <div style={backgroundStyle}>
+      <LoginRegister open />
+    </div>
+  )
+}
+
+

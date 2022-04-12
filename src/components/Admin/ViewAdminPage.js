@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Container, Box } from "@mui/material";
 import { FormControl, TextField, Button, Typography } from "@mui/material";
-
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,13 +8,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
 import DeleteIcon from "@mui/icons-material/Delete";
-
 import { makeStyles } from "@mui/styles";
 
-import { useAuth } from "Context/Utils/AuthContext";
-
+import { useAuth } from "Context/AuthContext";
+import './ViewAdminPage.css'
 import { db } from "../../Firebase.js";
 import {
   collection,
@@ -43,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AdminPanel() {
+export default function ViewAdminPage() {
   const classes = useStyles();
   const [inputFields, setImputFields] = React.useState({
     exchange: "",

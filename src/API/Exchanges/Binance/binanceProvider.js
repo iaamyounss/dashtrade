@@ -37,10 +37,14 @@ async function clientApiSignedBinance(
   dataQueryString,
   method,
 ) {
+  
+  // signature with crypted api keys
   const signature = CryptoJS.HmacSHA256(
     dataQueryString,
     apiKeys.APISECRET,
   ).toString(CryptoJS.enc.Hex)
+  
+  // create a proxy to allow control headers in POST request
   const proxy = 'https://calm-caverns-53376.herokuapp.com/'
   const options = {
     url:

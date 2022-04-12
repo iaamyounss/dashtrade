@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import { Link } from "react-location";
-import { useAuth } from "Context/Utils/AuthContext";
+import { useAuth } from "Context/AuthContext";
 import Button from '@mui/material/Button';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import "./Header.css";

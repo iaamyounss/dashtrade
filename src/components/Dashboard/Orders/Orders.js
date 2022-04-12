@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as binance from '../../../API/Exchanges/Binance/binanceProvider'
-import { useExchange } from '../../../Context/Utils/ExchangeContext'
+import { useExchange } from '../../../Context/ExchangeContext'
 import {CurrentPriceAPI, Quantity, ActionButtons} from './OrdersView'
 import Typography from '@mui/material/Typography'
 
@@ -18,14 +18,11 @@ function updateLastPrice(currentCurrencyAPI, setLastPrice){
 }
 
 
-// Orders is a component who take the current information from the API for the client and push the orders the client want to the API
-// props : 
-// currentCurrencyAPI  : get the current currency from API
-// type : Is limit or market ? 
-// timeInForce : GTC
-// quantityToBuy    : post the qty you want to buy/sell
-// currentPriceWS : get the current price in realtime from websocket
 
+// type : Is limit or market ? 
+// timeInForce : GTC by default 
+
+// Order component to POST a market position 
 
 export default function Orders({
   currentCurrencyAPI,
@@ -52,10 +49,8 @@ export default function Orders({
 
   
 
-  // CurrentPriceAPI component take the currency on props and it value from API
-  // Quantity fix qty on form
-  // ActionButtons Submit API 
   return (
+      // empty div for responsive usage
     <div>
       <Typography component='div' style={{ display: 'flex', justifyContent: 'center' }}><Typography component='span' style={{ textAlign: 'center' }}>
           {currentCurrencyAPI}
