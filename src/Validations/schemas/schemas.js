@@ -1,0 +1,3 @@
+// TODO: include the schemas for the differents form the user have to push
+// i.e. password with special characters, uppercase...
+// set the differents schemas possibles inside the schema files

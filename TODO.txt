@@ -1,13 +1,20 @@
-separer la logic de la view
+✅ Finish register component 
 
-dossier utils a la racine de src ( helper.js authapp )
+✅ Create Login 
 
-supprimer les librairies inutilisées ( use-immer, react-location or router )
+✅ Create LoginOrRegister Components
 
-redirection url in netlify
+✅ Finish Advanced structure  
 
-currency exchange
+🔄separer la logic de la view
+    import hooks into hooks folder ( useExchange in example )
+    add validations forms to the validations folder 
 
-view curent orders  from api
+✅ supprimer les librairies inutilisées ( use-immer, react-location or router )
+
+redirection url in netlify ( switch to amazon s3 ? )
+
+context currency : view current orders, price from websockets and market variations too
+context apikeys  : si cles non definis passage d'ordre disabled uniquement vue des prix et datas venant du backend
 
 switch to ccxt

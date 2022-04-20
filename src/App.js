@@ -1,12 +1,12 @@
-import { useAuth } from 'Context/AuthContext'
+import { useAuth } from 'Services/Auth/AuthContext'
 import { Suspense } from 'react'
-import LoadingFullScreen from 'utils/LoadingFullScreen'
+import LoadingFullScreen from 'Helpers/LoadingFullScreen'
 import createTheme from "@mui/material/styles/createTheme";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
-import AuthContextProvider from "Context/AuthContext";
-import ExchangeContextProvider from "./Context/ExchangeContext";
-import { UnauthApp } from 'utils/AppAuth';
-import AuthApp from 'utils/AppAuth';
+import AuthContextProvider from "Services/Auth/AuthContext";
+import ExchangeContextProvider from "./Services/API/ExchangeContext";
+import { UnauthApp } from 'Services/Auth/AppAuth';
+import AuthApp from 'Services/Auth/AppAuth';
 
 const theme = createTheme({
   palette: {
