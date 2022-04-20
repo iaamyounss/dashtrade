@@ -1,9 +1,37 @@
-import { useAuth } from 'context/utils/AuthContext'
-import { lazy, Suspense } from 'react'
-import { AppProviders } from 'context'
-import LoadingFullScreen from 'components/utils/LoadingFullScreen'
-const AuthApp = lazy(() => import(/* webpackPrefetch: true */ 'components/utils/AppAuth'))
-const UnauthApp = lazy(() => import('components/utils/AppUnAuth'))
+import { useAuth } from 'Services/Auth/AuthContext'
+import { Suspense } from 'react'
+import LoadingFullScreen from 'Helpers/LoadingFullScreen'
+import createTheme from "@mui/material/styles/createTheme";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
+import AuthContextProvider from "Services/Auth/AuthContext";
+import ExchangeContextProvider from "./Services/API/ExchangeContext";
+import { UnauthApp } from 'Services/Auth/AppAuth';
+import AuthApp from 'Services/Auth/AppAuth';
+
+const theme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#767676",
+    },
+    secondary: {
+      main: "#E50914",
+    },
+  },
+});
+
+const AppProviders = ({ children }) => {
+  return (
+
+    <ThemeProvider theme={theme}>
+        <AuthContextProvider>
+          <ExchangeContextProvider>
+            {children}
+          </ExchangeContextProvider>
+        </AuthContextProvider>
+    </ThemeProvider>
+  );
+};
 
 const AppConsumer = () => {
   const { authUser } = useAuth()
@@ -14,7 +42,7 @@ const AppConsumer = () => {
   )
 }
 
-function App() {
+export default function App() {
   return (
     <AppProviders>
       <AppConsumer />
@@ -22,4 +50,4 @@ function App() {
   )
 }
 
-export default App
+

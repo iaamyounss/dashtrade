@@ -1,0 +1,36 @@
+
+body{
+  margin: 0;
+}
+.banner__buttons {
+  margin-top: 1vw;
+}
+.banner__button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  font-size: 2vh;
+  border-radius: 0.2vw;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.banner__button:hover {
+  opacity: 0.7;
+}
+
+.banner__buttonplay {
+  color: #000;
+  background-color: #e6e6e6;
+}
+
+.banner__buttonplay:hover {
+  opacity: 0.7;
+}
+
+h1 {
+  font-size: 2rem;
+}
