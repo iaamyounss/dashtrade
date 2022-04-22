@@ -8,7 +8,7 @@ import '../index.css'
 
 
 
-export default function OrdersSwitchLimitMarket({selectedToken, open, onOpen }) {
+export default function OrdersTypeSwitcher({selectedToken, open, onOpen }) {
   const drawerBleeding = 56;
 
 return (
@@ -24,9 +24,9 @@ return (
       keepMounted: true,
     }}
   >
-      <Button onClick={onOpen}>
-        <CloseIcon fontSize="large" />
-      </Button>
+    
+      <Button onClick={onOpen}><CloseIcon fontSize="large" /></Button>
+
       <TypeSwitcher token={selectedToken} />
 
   </SwipeableDrawer>
@@ -35,15 +35,12 @@ return (
 }
 
 function TypeSwitcher({token}) {
+
   const [showLimit, setShowLimit] = useState(true)
 
-
-  const handleLimitClick = () => {
-    setShowLimit(!showLimit)
-  }
-  const handleMarketClick = () => {
-    setShowLimit(!showLimit)
-  }
+  const handleLimitClick = () => setShowLimit(!showLimit)
+  
+  const handleMarketClick = () => setShowLimit(!showLimit) 
 
   return (
     
@@ -51,33 +48,19 @@ function TypeSwitcher({token}) {
       
   
       <br />
+
       <div>
-        <Button 
-          onClick={handleLimitClick}
-          className={showLimit ? 'isActive': null}
-          >
+        <Button onClick={handleLimitClick} className={showLimit ? 'isActive': null} >
           Limit
         </Button>
-        <Button 
-          onClick={handleMarketClick}
-          className={showLimit ? null : 'isActive'}
-          >
+        <Button onClick={handleMarketClick} className={showLimit ? null : 'isActive'} >
           Market
         </Button>
       </div>
+
       <br />
-      {showLimit
-        ? <OrdersForm 
-            token={token}
-            type="LIMIT"
-            
-          /> 
-        : <OrdersForm 
-            token={token}
-            type="MARKET"
-            
-          />
-      }
+      { showLimit ? <OrdersForm token={token} type="LIMIT" /> : <OrdersForm token={token} type="MARKET" /> }
+
     </div>
   )
 }
