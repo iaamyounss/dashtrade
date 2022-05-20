@@ -19,7 +19,7 @@ export default function AuthApp() {
       logout,
     },
     {
-      path: "/admin",
+      path: "/Admin",
       element: <Admin />,
       logout,
     },

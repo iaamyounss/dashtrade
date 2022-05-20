@@ -39,11 +39,7 @@ export default function OrdersForm({ token, type })
     // empty div for responsive usage
     <div>
 
-      <Typography component="div" style={{display: 'flex', justifyContent: 'center'}}>
-        <Typography component="span" style={{textAlign: 'center'}}>
-          {token}
-        </Typography>
-      </Typography>
+      <Typography component="div" style={{display: 'flex', justifyContent: 'center'}}><Typography component="span" style={{textAlign: 'center'}}> {token} </Typography></Typography>
 
       <TokenPrice token={token} lastPrice={lastPrice} updatePrice={updatePrice} />
 

@@ -1,12 +1,12 @@
 import * as React from "react";
-import Header from "Components/Header";
-import AdminView from "Components/AdminView";
+import HeaderAdmin from "Components/HeaderAdmin";
+//import UserSettings from "Components/UserSettings";
 
 export default function Admin() {
   return (
-    <>
-      <Header />
-      <AdminView />
+    <>   
+        <HeaderAdmin />
+  
     </>
   );
 }

@@ -1,27 +1,10 @@
-@media only screen and (max-width: 767px) {
-  .rmt-50pct{
-    margin-top: 50%;
-  }
-  .css-1ea1y4x{
-    width: 300px !important;
-  }
-  .responsiveFlex{
-    display: block;
-    text-align: center;
-  }
-}
-@media only screen and (min-width: 987px){
-  .responsiveFlex{
-    display: flex;
-  }
-  .backgroundImage {
-    background-image: url('./Assets/images/crypto-background.jpeg');
-    background-size: cover;
-  }
-}
+
 
 .black{
   color: black;
+}
+.background-black{
+  background-color: black;
 }
 a {
     text-decoration: none;
@@ -250,7 +233,10 @@ a {
   .flex {
     display: flex;
   }
-  
+  .flex-align-center{
+    display: flex;
+    align-items: center;
+  }
   
   @media only screen and (max-width: 978px) {
     #gauge-chart2{
@@ -316,3 +302,34 @@ a {
   .left-panel{display: none !important;;}
 }
 
+@media only screen and (max-width: 767px) {
+  .rmt-50pct{
+    margin-top: 50%;
+  }
+  .css-1ea1y4x{
+    width: 300px !important;
+  }
+  .responsiveFlex{
+    display: block;
+    text-align: center;
+  }
+  .admin_nav_icon{
+    display:block;
+  }
+}
+@media only screen and (min-width: 987px){
+  .responsiveFlex{
+    display: flex;
+  }
+  .backgroundImage {
+    background-image: url('./Assets/images/crypto-background.jpeg');
+    background-size: cover;
+  }
+  .admin_nav_icon{
+    display: none !important;;
+  }
+}
+
+.adminHeader{
+  height:64px;
+}
