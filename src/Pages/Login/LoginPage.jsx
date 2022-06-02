@@ -3,11 +3,11 @@ import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert';
-import Login from './Login';
+import LoginForm from './LoginForm';
 import RegisterModal from './RegisterModal';
-import '../index.css';
+import '../../index.css'
 
-export default function OpenRegisterModal(){
+export default function LoginPage(){
 
 
   const [ error, setError] = useState(false);
@@ -23,7 +23,7 @@ export default function OpenRegisterModal(){
     return (
       <div style={{padding: '20px'}} className="right-panel rmt-50pct">
 
-        <Login setError={setError} />
+        <LoginForm setError={setError} />
         <Button onClick={handleOpen} >Pas encore inscrit ? </Button>
 
         {error ? <Alert severity="error">{error}</Alert> : null}

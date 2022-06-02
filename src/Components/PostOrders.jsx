@@ -1,5 +1,5 @@
 import React from 'react'
-import { postOrder } from './OrdersForm'
+import { postOrder } from '../Sections/Orders/OrdersForm'
 import { Typography } from '@mui/material'
 import '../index.css'
 

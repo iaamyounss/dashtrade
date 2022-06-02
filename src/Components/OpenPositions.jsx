@@ -1,7 +1,7 @@
 
 /* features 
 
-// each tab link to its component
+// link each tab to its component
 // active tab
 // get the orders from API
 
@@ -20,6 +20,7 @@ function TabPanel(props) {
 
   return (
     <div
+      style={{ backgroundColor: '#000'}}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}

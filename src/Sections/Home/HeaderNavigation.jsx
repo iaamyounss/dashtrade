@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import {Link} from 'react-location';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 export default function HeaderNavigation(){
@@ -13,6 +13,11 @@ export default function HeaderNavigation(){
         <Link to="/admin">
           <Button variant="h6" component="div">
             Admin
+          </Button>
+        </Link>
+        <Link to="/tokens">
+          <Button variant="h6" component="div">
+            Tokens
           </Button>
         </Link>
       </Fragment>

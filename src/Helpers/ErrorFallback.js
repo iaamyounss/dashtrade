@@ -1,5 +1,5 @@
-import Header from "Components/Header";
-import 'Routes/Home/Home.css'
+import Header from "Sections/Home/Header";
+import 'Pages/Home/Home.css'
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
