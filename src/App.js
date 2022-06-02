@@ -1,11 +1,8 @@
 import { Suspense } from 'react'
-import { useAuth } from 'Services/Auth/AuthContext'
-import { UnauthApp } from 'Services/Auth/Authentication';
 import { BrowserRouter } from 'react-router-dom';
-import AuthApp from 'Services/Auth/Authentication';
+import AuthApp from 'Services/Auth/Route';
 import createTheme from "@mui/material/styles/createTheme";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
-import AuthContextProvider from "Services/Auth/AuthContext";
 import ExchangeContextProvider from "./Services/API/ExchangeContext";
 import LoadingFullScreen from 'Helpers/LoadingFullScreen'
 
@@ -24,20 +21,18 @@ const theme = createTheme({
 const AppProviders = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <AuthContextProvider>
         <BrowserRouter>
           <ExchangeContextProvider>{children}</ExchangeContextProvider>
         </BrowserRouter>
-      </AuthContextProvider>
     </ThemeProvider>
   )
 };
 
 const AppConsumer = () => {
-  const { authUser } = useAuth()
+  
   return (
     <Suspense fallback={<LoadingFullScreen />}>
-      {authUser ? <AuthApp /> : <UnauthApp />}
+      <AuthApp /> 
     </Suspense>
   )
 }
