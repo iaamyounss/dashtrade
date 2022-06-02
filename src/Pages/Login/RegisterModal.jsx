@@ -1,10 +1,10 @@
 import React from 'react'
 import { FormProvider } from 'react-hook-form'
-import { useCustomerData } from '../Hooks/useCustomerData'
+import { useCustomerData } from '../../Hooks/useCustomerData'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import '../index.css'
+import '../../index.css'
 
 //TODO: add design, send to api via signup authapp function, 
 // hash the password before post in database and secure the user password

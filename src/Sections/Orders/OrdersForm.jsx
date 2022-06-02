@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { postOrders, getLastPriceToken } from '../Services/API/ApiProvider'
-import { useExchange } from '../Services/API/ExchangeContext'
-import TokenPrice from './TokenPrice'
-import TokenQuantity from './TokenQuantity'
-import PostOrders from './PostOrders'
+import { postOrders, getLastPriceToken } from '../../Services/API/ApiProvider'
+import { useExchange } from '../../Services/API/ExchangeContext'
+import TokenPrice from '../../Components/TokenPrice'
+import TokenQuantity from '../../Components/TokenQuantity'
+import PostOrders from '../../Components/PostOrders'
 import Typography from '@mui/material/Typography'
 
 

@@ -5,30 +5,19 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import { useAuth } from "Services/Auth/AuthContext";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import "../index.css";
+import '../../index.css'
 
 
-export default function Header() {
+export default function Header({onOpenSideBar}) {
   
   const title = 'DashTrade'
 
-  const [bool, setBool] = React.useState(null);
-
   // remove the default state because warn
   const [setError] = React.useState("");
-
-  const handleOpenNavMenu = (event) => {
-    setBool(event.currentTarget);
-  };
-  
-  const handleCloseNavMenu = () => {
-    setBool(null);
-  };
   
   const { logout } = useAuth();
   
@@ -51,17 +40,11 @@ export default function Header() {
             {title}
           </Typography>
 
-          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'block'}}}>
 
-            <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit" >
+            <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={onOpenSideBar} color="inherit" >
               <MenuIcon />
             </IconButton>
-
-            <Menu id="menu-appbar" anchorEl={bool} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-              keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left', }}
-              open={Boolean(bool)} onClose={handleCloseNavMenu} sx={{ display: {xs: 'block', md: 'none'}, }} >
-              <HeaderNavigation />
-            </Menu>
 
           </Box>
 
@@ -69,9 +52,6 @@ export default function Header() {
             {title}
           </Typography>
 
-          <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-              <HeaderNavigation />
-          </Box>
 
           <ExitToAppIcon color="white" fontSize="large" onClick={logOut} />
           

@@ -4,7 +4,7 @@ import OrdersForm from './OrdersForm'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import CloseIcon from '@mui/icons-material/Close';
 //import Wallet from './OrdersWallet'
-import '../index.css'
+import '../../index.css'
 
 
 
